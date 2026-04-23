@@ -10,7 +10,7 @@ let pagos = {};
 
 // Ruta principal
 app.get("/", (req, res) => {
-  res.send("Servidor funcionandoooo 💅");
+  res.send("Servidor funcionandoooo ");
 });
 
 // Verificar pago por id
