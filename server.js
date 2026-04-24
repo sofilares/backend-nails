@@ -33,19 +33,26 @@ app.post("/crear-preferencia", async (req, res) => {
     const preference = new Preference(client);
 
     const response = await preference.create({
-      body: {
-        items: [
-          {
-            title: `Anticipo cita - ${servicios || "Beauty Studio"}`,
-            quantity: 1,
-            currency_id: "MXN",
-            unit_price: 1
-          }
-        ],
-        external_reference: clienteId,
-        notification_url: "https://backend-nails-3.onrender.com/webhook"
+  body: {
+    items: [
+      {
+        title: `Anticipo cita - ${servicios || "Beauty Studio"}`,
+        quantity: 1,
+        currency_id: "MXN",
+        unit_price: 1
       }
-    });
+    ],
+    external_reference: clienteId,
+    notification_url: "https://backend-nails-3.onrender.com/webhook",
+    payment_methods: {
+      excluded_payment_types: [],
+      excluded_payment_methods: [],
+      installments: 1,
+      default_installments: 1
+    }
+  }
+});
+
 
     res.json({
       preferenceId: response.id
